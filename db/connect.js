@@ -4,6 +4,14 @@ const dotenv = require('dotenv');
 dotenv.config();
 const mongoose = require('mongoose')
 
+// Set the strictQuery option
+mongoose.set('strictQuery', false);
+
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.error('MongoDB connection error:', err));
+
 let _db;
 
 const initDb = (callback) => {
